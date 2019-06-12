@@ -1,0 +1,76 @@
+{
+  "private": true,
+  "name": "virtual-list",
+  "description": "A DOM utility for efficiently rendering large, scrollable lists and tabular data.",
+  "version": "1.0.0-alpha",
+  "license": "MIT",
+  "author": "Steven Vachon <contact@svachon.com> (https://svachon.com)",
+  "repository": "github:stevenvachon/virtual-list",
+  "main": "index-es5.js",
+  "dependencies": {
+    "is-object": "^1.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-private-methods": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.4",
+    "gh-pages": "^2.0.1",
+    "gzip-size-cli": "^3.0.0",
+    "mocha": "^6.1.4",
+    "npm-watch": "~0.6.0",
+    "nyc": "^14.1.1",
+    "parcel": "^1.12.3",
+    "puppeteer": "^1.17.0",
+    "puppeteer-to-istanbul": "^1.2.2",
+    "rimraf": "^2.6.3"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "build": "npm run build-release && npm run build-demo && npm run build-size",
+    "build-demo": "parcel build index-es5.js --global=VirtualList --log-level=1 --no-cache --out-dir=demo --out-file=build.js --public-url='.'",
+    "build-release": "babel index.js --out-file=index-es5.js --plugins=@babel/proposal-private-methods,@babel/proposal-class-properties,add-module-exports --presets=@babel/env --source-maps",
+    "build-size": "parcel build index-es5.js --experimental-scope-hoisting --log-level=0 --no-cache --no-source-maps --out-dir='.' --out-file=temp.js && gzip-size temp.js && rimraf temp.js",
+    "build:watch": "npm-watch build",
+    "ci": "npm run test && nyc report --reporter=text-lcov | coveralls",
+    "posttest": "nyc report --reporter=text-summary --reporter=html",
+    "prepublishOnly": "npm test && gh-pages --dist=demo --dotfiles",
+    "pretest": "npm run build",
+    "test": "nyc --silent mocha test.js --bail --check-leaks --timeout=5000",
+    "test:watch": "npm-watch test"
+  },
+  "watch": {
+    "build": {
+      "inherit": true,
+      "patterns": [
+        "index.js"
+      ]
+    },
+    "test": {
+      "inherit": true,
+      "patterns": [
+        "index.js",
+        "test.js"
+      ]
+    }
+  },
+  "files": [
+    "index.js",
+    "index-es5.js",
+    "index-es5.js.map"
+  ],
+  "keywords": [
+    "dom",
+    "list",
+    "performance",
+    "virtual",
+    "virtualization",
+    "windowing"
+  ]
+}

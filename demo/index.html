@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>virtual-list demo</title>
+		<script src="build.js"></script>
+		<style>
+			body {
+				background-color: white;
+				color: black;
+				font-family: sans-serif;
+				font-size: 16px;
+				text-align: center;
+			}
+
+			/*:not(h1,h2,h3,h4,h5,h6) {*/
+			body :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(small) {
+				font-size: inherit;
+			}
+
+			a {
+				color: #2f3ca8;
+			}
+
+			code {
+				font-family: monospace;
+			}
+
+			form {
+				display: flex;
+				flex-wrap: wrap;
+				margin: -0.5em -0.25em;
+				padding-bottom: 1em;
+			}
+
+			form fieldset {
+				align-content: flex-start;
+				border: 1px solid silver;
+				border-radius: .5em;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				justify-content: center;
+				margin: .5em .25em;
+			}
+
+			form fieldset label {
+				margin: .5em;
+			}
+
+			hr {
+				background-color: black;
+				border: 0;
+				height: 1px;
+				margin-bottom: 2em;
+			}
+
+			label code {
+				font-size: 16px !important; /* weird */
+			}
+
+			noscript {
+				background-color: rgba(255, 0, 0, 12.5%);
+				color: red;
+				display: inline-block;
+				margin: .5em 0;
+				padding: .25em;
+			}
+
+			section {
+				margin: 0 auto;
+				max-width: 50em;
+				padding: 0 .75em;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><code>virtual-list</code></h1>
+			<p><a href="https://github.com/stevenvachon/virtual-list">GitHub Repository</a></p>
+		</header>
+
+		<noscript><small>JavaScript must be <strong>enabled</strong>.</small></noscript>
+
+		<hr>
+
+		<section>
+			<form>
+				<fieldset>
+					<legend>Data</legend>
+					<label>
+						Item count
+						<select name="num-options">
+							<option>0</option>
+							<option>1</option>
+							<option>5</option>
+							<option selected>20</option>
+							<option>100</option>
+							<option>500</option>
+							<option>5000</option>
+						</select>
+					</label>
+				</fieldset>
+			</form>
+
+			<p>List:</p>
+			<ul id="list"></ul>
+
+			<p>Table</p>
+			<table id="table"></table>
+		</section>
+
+		<script></script>
+	</body>
+</html>
